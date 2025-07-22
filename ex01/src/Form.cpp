@@ -1,0 +1,82 @@
+#include "../inc/Form.hpp"
+#include <iostream>
+#include "../inc/Bureaucrat.hpp"
+
+Form::Form(void)
+	: _name {"default"}
+	, _signed {false}
+	, _signGrade {1}
+	, _execGrade {1}
+{
+	std::cout << "Form default constructor called" << std::endl;
+}
+
+Form::Form(const Form &other) 
+	: _name {other._name}
+	, _signed {other._signed}
+	, _signGrade {other._signGrade}
+	, _execGrade {other._execGrade}
+{
+	std::cout << "Form copy constructor called for " << _name << std::endl;
+}
+
+Form::Form(const std::string &name, int signGrade, int execGrade)
+	: _name {name}
+	, _signed {false}
+	, _signGrade {signGrade}
+	, _execGrade {execGrade}
+{
+	std::cout << "Form constructor called for " << _name << std::endl;
+	if (signGrade > 150 || execGrade > 150)
+		throw GradeTooLowException();
+	else if (signGrade < 1 || execGrade < 1)
+		throw GradeTooHighException();
+}
+
+Form::~Form()
+{
+	std::cout << "Form destructor called for " << _name << std::endl;
+}
+
+void Form::beSigned(const Bureaucrat &signer)
+{
+	if (signer.getGrade() <= _signGrade)
+	{
+		_signed = true;
+		std::cout << signer.getName() << " signed " << _name << std::endl;
+	}
+	else
+	{
+		throw GradeTooLowException();
+	}
+}
+
+const std::string& Form::getName() const
+{
+	return _name;
+}
+
+bool Form::getSigned() const
+{
+	return _signed;
+}
+
+int Form::getSignGrade() const
+{
+	return _signGrade;
+}
+
+int Form::getExecGrade() const
+{
+	return _execGrade;
+}
+
+const char* Form::GradeTooHighException::what() const noexcept
+{
+	return "Grade too high";
+}
+
+const char* Form::GradeTooLowException::what() const noexcept
+{
+	return "Grade too low";
+}

@@ -3,7 +3,9 @@
 
 # include <string>
 # include <exception>
+# include "../inc/Form.hpp"
 
+class Form;
 
 class Bureaucrat
 {
@@ -17,9 +19,11 @@ private:
 	Bureaucrat(const std::string &name, int grade);
 	Bureaucrat(const Bureaucrat &other);
 	
-	Bureaucrat &operator=(const Bureaucrat &other);
+	Bureaucrat &operator=(const Bureaucrat &other) = delete;
 	
 	~Bureaucrat();
+
+	void signForm(Form &form);
 	
 	const std::string &getName(void) const;
 	int getGrade(void) const;
