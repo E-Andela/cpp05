@@ -47,6 +47,7 @@ void Form::beSigned(const Bureaucrat &signer)
 	}
 	else
 	{
+		std::cerr << signer.getName() << " couldn't sign " << _name << " because his grade is too low" << std::endl;
 		throw GradeTooLowException();
 	}
 }
@@ -79,4 +80,16 @@ const char* Form::GradeTooHighException::what() const noexcept
 const char* Form::GradeTooLowException::what() const noexcept
 {
 	return "Grade too low";
+}
+
+std::ostream &operator<<(std::ostream &os, const Form &form)
+{
+	os << "Form " << form.getName() << " needs grade " << form.getSignGrade()
+		<< " to be signed and " << form.getExecGrade() << " to be executed. ";
+	if (form.getSigned())
+		os << "Form is signed.";
+	else
+		os << "Form is not yet signed";
+	
+	return os;
 }
