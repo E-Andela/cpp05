@@ -8,7 +8,9 @@ AForm::AForm(void)
 	, _signGrade {1}
 	, _execGrade {1}
 {
+	#ifdef DEBUG
 	std::cout << "Form default constructor called" << std::endl;
+	#endif
 }
 
 AForm::AForm(const AForm &other) 
@@ -17,7 +19,9 @@ AForm::AForm(const AForm &other)
 	, _signGrade {other._signGrade}
 	, _execGrade {other._execGrade}
 {
+	#ifdef DEBUG
 	std::cout << "Form copy constructor called for " << _name << std::endl;
+	#endif
 }
 
 AForm::AForm(const std::string &name, int signGrade, int execGrade)
@@ -26,7 +30,9 @@ AForm::AForm(const std::string &name, int signGrade, int execGrade)
 	, _signGrade {signGrade}
 	, _execGrade {execGrade}
 {
+	#ifdef DEBUG
 	std::cout << "Form constructor called for " << _name << std::endl;
+	#endif
 	if (signGrade > 150 || execGrade > 150)
 		throw GradeTooLowException();
 	else if (signGrade < 1 || execGrade < 1)
@@ -35,7 +41,9 @@ AForm::AForm(const std::string &name, int signGrade, int execGrade)
 
 AForm::~AForm()
 {
+	#ifdef DEBUG
 	std::cout << "Form destructor called for " << _name << std::endl;
+	#endif
 }
 
 void AForm::beSigned(const Bureaucrat &signer)
@@ -55,9 +63,17 @@ void AForm::beSigned(const Bureaucrat &signer)
 void AForm::execute(const Bureaucrat &executor) const
 {
 	if (!_signed)
+	{
+		std::cerr << executor.getName() << " couldn't execute " << _name
+			<< " because it's not signed" << std::endl;
 		throw FormNotSignedException();
+	}
 	if (executor.getGrade() > _execGrade)
+	{
+		std::cerr << executor.getName() << " couldn't execute " << _name
+			<< " because his grade is too low" << std::endl;
 		throw GradeTooLowException();
+	}
 	std::cout << executor.getName() << " executes " << _name << std::endl;
 	executeAction(executor);
 }
