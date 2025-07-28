@@ -6,8 +6,8 @@
 void testFormConstructor() {
 	try {
 		Form form("Form", 50, 100);
-		std::cout << "Form constructor test passed." << std::endl;
 		std::cout << form << std::endl;
+		std::cout << "Form constructor test passed." << std::endl;
 	} catch (const std::exception &e) {
 		std::cerr << "Form constructor test failed: " << e.what() << std::endl;
 	}

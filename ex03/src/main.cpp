@@ -10,6 +10,7 @@
 int main(void)
 {
 	testCreatingInvalidForm();
+	std::cout << "----------------------------------------" << std::endl;
 	testIntern();
 
 	return 0;
