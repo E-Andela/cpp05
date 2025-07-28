@@ -12,7 +12,8 @@ SRC = $(SRC_DIR)/main.cpp \
 	  $(SRC_DIR)/ShrubberyCreationForm.cpp \
 	  $(SRC_DIR)/RobotomyRequestForm.cpp \
 	  $(SRC_DIR)/PresidentialPardonForm.cpp \
-	  $(SRC_DIR)/Intern.cpp
+	  $(SRC_DIR)/Intern.cpp \
+	  $(SRC_DIR)/tests.cpp
 
 
 OBJ_DIR = obj
@@ -33,7 +34,7 @@ clean:
 
 fclean: clean
 	rm -f $(TARGET)
-	rm -f home_shrubbery
+	rm -f *_shrubbery
 
 re: fclean all
 
