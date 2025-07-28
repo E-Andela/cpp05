@@ -1,12 +1,14 @@
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror -std=c++11
+#-DDEBUG
 
 TARGET = bureaucrat
 
 SRC_DIR = src
 SRC = $(SRC_DIR)/main.cpp \
-	  $(SRC_DIR)/Bureaucrat.cpp
+	  $(SRC_DIR)/Bureaucrat.cpp \
+	  $(SRC_DIR)/tests.cpp
 
 
 OBJ_DIR = obj
