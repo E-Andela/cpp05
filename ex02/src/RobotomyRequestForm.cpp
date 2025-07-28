@@ -43,7 +43,6 @@ const std::string& RobotomyRequestForm::getTarget() const
 
 void RobotomyRequestForm::executeAction(const Bureaucrat &executor) const
 {
-	std::srand(time(NULL));
 	int rand = std::rand();
 
 	const char* drillingNoises[] = {
