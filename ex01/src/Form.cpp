@@ -8,7 +8,9 @@ Form::Form(void)
 	, _signGrade {1}
 	, _execGrade {1}
 {
+	#ifdef DEBUG
 	std::cout << "Form default constructor called" << std::endl;
+	#endif
 }
 
 Form::Form(const Form &other) 
@@ -17,7 +19,9 @@ Form::Form(const Form &other)
 	, _signGrade {other._signGrade}
 	, _execGrade {other._execGrade}
 {
+	#ifdef DEBUG
 	std::cout << "Form copy constructor called for " << _name << std::endl;
+	#endif
 }
 
 Form::Form(const std::string &name, int signGrade, int execGrade)
@@ -26,16 +30,20 @@ Form::Form(const std::string &name, int signGrade, int execGrade)
 	, _signGrade {signGrade}
 	, _execGrade {execGrade}
 {
-	std::cout << "Form constructor called for " << _name << std::endl;
 	if (signGrade > 150 || execGrade > 150)
-		throw GradeTooLowException();
+	throw GradeTooLowException();
 	else if (signGrade < 1 || execGrade < 1)
-		throw GradeTooHighException();
+	throw GradeTooHighException();
+	#ifdef DEBUG
+	std::cout << "Form constructor called for " << _name << std::endl;
+	#endif
 }
 
 Form::~Form()
 {
+	#ifdef DEBUG
 	std::cout << "Form destructor called for " << _name << std::endl;
+	#endif
 }
 
 void Form::beSigned(const Bureaucrat &signer)

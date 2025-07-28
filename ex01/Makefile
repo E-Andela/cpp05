@@ -7,7 +7,9 @@ TARGET = form
 SRC_DIR = src
 SRC = $(SRC_DIR)/main.cpp \
 	  $(SRC_DIR)/Bureaucrat.cpp \
-	  $(SRC_DIR)/Form.cpp
+	  $(SRC_DIR)/Form.cpp \
+	  $(SRC_DIR)/formTests.cpp \
+	  $(SRC_DIR)/bureaucratTests.cpp
 
 
 OBJ_DIR = obj

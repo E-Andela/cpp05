@@ -3,7 +3,9 @@
 
 Bureaucrat::Bureaucrat(void) : _name {"Default"}, _grade {150}
 {
+	#ifdef DEBUG
 	std::cout << "Bureaucrat default constructor called" << std::endl;
+	#endif
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name {name}, _grade {grade}
@@ -12,17 +14,23 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name {name}, _grad
 		throw GradeTooLowException();
 	else if (grade < 1)
 		throw GradeTooHighException();
+	#ifdef DEBUG
 	std::cout << "Bureaucrat constructor called for " << _name << " with a grade of " << _grade << std::endl;
+	#endif
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name {other._name}, _grade {other._grade}
 {
+	#ifdef DEBUG
 	std::cout << "Bureaucrat copy constructor called for " << _name << std::endl;
+	#endif
 }
 
 Bureaucrat::~Bureaucrat()
 {
+	#ifdef DEBUG
 	std::cout << "Bureaucrat destructor called for " << _name << std::endl;
+	#endif
 }
 
 void Bureaucrat::signForm(Form &form)
